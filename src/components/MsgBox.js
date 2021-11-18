@@ -22,7 +22,7 @@ export default function MsgBox({ query }) {
         setTitle,
         setAuthor,
         setPageCount,
-        setLink
+        setLink,
       );
     }
   }, [query]);
@@ -58,6 +58,7 @@ export default function MsgBox({ query }) {
           <p className="msg-box-empty">Recommended books</p>
         )}
       </button>
+
       {modal ? (
         <BookModal
           images={image}

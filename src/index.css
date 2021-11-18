@@ -17,6 +17,14 @@ body,
   margin-bottom: 0px;
 }
 
+.alert{
+  width: 400px;
+}
+
+.alert-p{
+  color: red;
+}
+
 .header-h2 {
   display: flex;
   justify-content: center;

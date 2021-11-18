@@ -12,6 +12,16 @@ export default function Results({ query }) {
   const [rating, setRating] = useState([]);
   const [ratingsCount, setRatingsCount] = useState([]);
 
+  const [msg, setMsg] = useState("");
+
+  const settingMsg = () => {
+    setMsg("Couldn't find this book! Wrong name!");
+  };
+
+  const resetingMsg = () => {
+    setMsg("");
+  };
+
   useEffect(() => {
     if (query === "") return;
 
@@ -23,27 +33,43 @@ export default function Results({ query }) {
       setImages,
       setPageCount,
       setRatingsCount,
-      setPublishers
+      setPublishers,
+      settingMsg,
+      resetingMsg
     );
   }, [query]);
 
   return (
     <div className="results">
-      {titles.map((value, index) => {
-        return (
-          <SingleBook
-            titles={value}
-            authors={authors[index]}
-            images={images[index]}
-            publishers={publishers[index]}
-            pageCount={pageCount[index]}
-            rating={rating[index]}
-            ratingsCount={ratingsCount[index]}
-            key={index}
-            index={index}
-          />
-        );
-      })}
+      {msg === "" ? (
+        <div></div>
+      ) : (
+        <div className="alert">
+          <p className="alert-p">{msg}</p>
+        </div>
+      )}
+
+      {msg === "" ? (
+        <>
+          {titles.map((value, index) => {
+            return (
+              <SingleBook
+                titles={value}
+                authors={authors[index]}
+                images={images[index]}
+                publishers={publishers[index]}
+                pageCount={pageCount[index]}
+                rating={rating[index]}
+                ratingsCount={ratingsCount[index]}
+                key={index}
+                index={index}
+              />
+            );
+          })}
+        </>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

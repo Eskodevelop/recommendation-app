@@ -8,7 +8,9 @@ export function getData(
   setImages,
   setPageCount,
   setRatingsCount,
-  setPublishers
+  setPublishers,
+  settingMsg,
+  resetingMsg
 ) {
   const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}`;
 
@@ -47,8 +49,10 @@ export function getData(
         (obj) => obj.volumeInfo.publisher
       );
       setPublishers(tempPublisher);
+
+      resetingMsg();
     })
-    .catch((reason) => console.log(reason));
+    .catch((reason) => settingMsg());
 }
 
 export function getSingleBook(
